@@ -1,0 +1,9 @@
+[project]
+name = "realtime-kline-dashboard"
+version = "0.1.0"
+description = "Pulling data from binance websocket for live data visualization."
+dependencies = [
+    "lightweight-charts>=2.1",
+    "requests>=2.32.5",
+    "websocket-client>=1.8.0",
+]
