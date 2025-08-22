@@ -33,7 +33,7 @@ uv run dashboard.py
 ```
 
 The application will open a web-based chart interface where you can:
-- Search for different cryptocurrencies in the search box
+- Search for different cryptocurrencies in the search box (search box open with cmd + s)
 - Switch between timeframes using the dropdown menu
 - View live price updates and historical data with SMA indicator
 
