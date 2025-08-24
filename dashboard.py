@@ -32,8 +32,6 @@ def start_ws(chart):
 
 def on_search(chart, search_coin):
     new_data = pd.DataFrame(get_data(search_coin, "USDC", chart.topbar['Timeframe'].value))
-    if new_data.empty:
-        return
     chart.topbar['Coin'].set(search_coin)
     chart.set(new_data)
 
@@ -52,8 +50,6 @@ def on_search(chart, search_coin):
 
 def on_timeframe_selection(chart):
     new_data = pd.DataFrame(get_data(chart.topbar['Coin'].value, "USDC", chart.topbar['Timeframe'].value))
-    if new_data.empty:
-        return
     chart.set(new_data)
 
     # Update SMA line
