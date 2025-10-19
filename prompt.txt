@@ -1,0 +1,15 @@
+Analyze the provided 5-minute K-line data to identify Smart Money Concepts (SMC) and common chart patterns.
+1. Market Structure: Determine the current higher timeframe (H1) structural bias (Bullish/Bearish) and confirm the latest 15-minute & 1h-hour Market Structure Shift (MSS) or Change of Character (CHOCH).
+2. Liquidity & Order Blocks & Fair Value Gaps:
+    - Identify the most recent swing high/low that serves as a liquidity target (Liquidity Sweep potential).
+    - Locate the nearest confirmed Demand Order Block (DB) and Supply Order Block (SB).
+    - Identify relevant Fair Value Gaps (FVG)
+3. Chart Pattern Recognition: Scan the last 50 candles for signs of a major reversal pattern (e.g., Double Top, Double Bottom, Head & Shoulders).
+4. Output:
+   - Current Structural Bias and Confirmation (e.g., H1 Bullish, 15M confirmed CHOCH).
+   - High-Probability Entry Zone: State the price range of the Demand Block or Supply Block to trade from.
+   - Trade Rationale: Explain whether the trade is a 'Continuation' or 'Reversal' setup based on SMC and pattern confirmation.
+   - Risk Note: Highlight the price level where the structural bias is definitively invalidated.
+   - Suggest different trading setups with a confidence ranking or score.
+
+Dislaimer: The data is in UTC timezone. Please output the data as Europe/Berlin time.

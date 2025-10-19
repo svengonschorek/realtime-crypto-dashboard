@@ -72,7 +72,7 @@ async def main():
     chart.legend(True)
     chart.events.search += on_search
 
-    chart.topbar.textbox('Coin', 'SOL')
+    chart.topbar.textbox('Coin', 'BTC', func=on_search)
     chart.topbar.switcher('Timeframe', ('1m', '5m', '1h', '4h', '1d'), default='5m',
         func=on_timeframe_selection
     )
