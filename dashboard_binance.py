@@ -3,23 +3,11 @@ import asyncio
 import threading
 
 from lightweight_charts import Chart
-
-from crypto_reatime_data import WebSocketManager
-from crypto_history_data import get_data
-
+from binance.crypto_history_data_binance import get_data
+from binance.crypto_reatime_data_binance import WebSocketManager
 
 ws_thread = None
 ws_manager = None
-
-def map_timeframe_to_interval(timeframe: str) -> str:
-    mapping = {
-        '1m': '1',
-        '5m': '5',
-        '1h': '60',
-        '4h': '240',
-        '1d': 'D'
-    }
-    return mapping.get(timeframe, '5')
 
 def calculate_sma(df, period: int = 50):
     return pd.DataFrame({
@@ -31,26 +19,20 @@ def start_ws(chart):
     global ws_manager
 
     def handle_realtime_data(row):
-        chart.update(row)
-    symbol = chart.topbar['Coin'].value + 'USDT'
+        chart.update_from_tick(row)
+
+    symbol = chart.topbar['Coin'].value.lower() + 'usdc'
     timeframe = chart.topbar['Timeframe'].value.lower()
 
     ws_manager = WebSocketManager(
         message_callback=handle_realtime_data, 
         symbol=symbol,
-        timeframe=map_timeframe_to_interval(timeframe)
+        timeframe=timeframe
     )
 
-def on_search(chart):
-    new_data = pd.DataFrame(
-        get_data(
-            chart.topbar['Coin'].value,
-            "USDT",
-            map_timeframe_to_interval(chart.topbar['Timeframe'].value)
-        )
-    ).sort_values(by='time')
-
-    chart.topbar['Coin'].set(chart.topbar['Coin'].value)
+def on_search(chart, search_coin):
+    new_data = pd.DataFrame(get_data(search_coin, "USDC", chart.topbar['Timeframe'].value))
+    chart.topbar['Coin'].set(search_coin)
     chart.set(new_data)
 
     # Update SMA line
@@ -67,12 +49,7 @@ def on_search(chart):
     ws_thread.start()
 
 def on_timeframe_selection(chart):
-    new_data = pd.DataFrame(
-        get_data(
-            chart.topbar['Coin'].value,
-            "USDT",
-            map_timeframe_to_interval(chart.topbar['Timeframe'].value))
-        ).sort_values(by='time')
+    new_data = pd.DataFrame(get_data(chart.topbar['Coin'].value, "USDC", chart.topbar['Timeframe'].value))
     chart.set(new_data)
 
     # Update SMA line
@@ -101,14 +78,7 @@ async def main():
     )
 
     # initial data load
-    df = pd.DataFrame(
-        get_data(
-            chart.topbar['Coin'].value,
-            "USDT",
-            map_timeframe_to_interval(chart.topbar['Timeframe'].value)
-        )
-    ).sort_values(by='time')
-
+    df = pd.DataFrame(get_data(chart.topbar['Coin'].value, "USDC", chart.topbar['Timeframe'].value))
     chart.set(df)
 
     # Show SMA 50 line

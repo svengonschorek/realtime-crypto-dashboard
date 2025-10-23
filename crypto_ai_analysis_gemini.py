@@ -1,7 +1,7 @@
 import markdown, webbrowser, tempfile
 
 from google import genai
-from crypto_history_data import get_data
+from binance.crypto_history_data_binance import get_data
 
 klines_5m = get_data("SOL", "USDT", "5m")
 

@@ -1,22 +1,24 @@
-import requests, datetime
+import datetime
+
+from pybit.unified_trading import HTTP
+
+session = HTTP(testnet=False)
 
 def get_data(coin, base_coin, timeframe):
 
-    url="https://data-api.binance.vision/api/v3/uiKlines"
     symbol = coin + base_coin
 
-    filter = {
-        'symbol': symbol,
-        'interval': timeframe
-    }
-
-    result = requests.get(url, params=filter)
-    result_json = result.json()
+    result = session.get_kline(
+        category="linear",
+        symbol=symbol,
+        interval=timeframe,
+        limit=200
+    )
 
     data = []
-    for kline in result_json:
+    for kline in result['result']['list']:
         row = {
-            "time": datetime.datetime.fromtimestamp(kline[0] / 1000).strftime('%Y-%m-%d %H:%M:%S'),
+            "time": datetime.datetime.fromtimestamp(float(kline[0]) / 1000).strftime('%Y-%m-%d %H:%M:%S'),
             "open": float(kline[1]),
             "high": float(kline[2]),
             "low": float(kline[3]),
