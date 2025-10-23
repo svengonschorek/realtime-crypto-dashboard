@@ -3,8 +3,8 @@ import asyncio
 import threading
 
 from lightweight_charts import Chart
-from binance.crypto_history_data_binance import get_data
-from binance.crypto_reatime_data_binance import WebSocketManager
+from binance.history_data_binance import get_data
+from binance.reatime_data_binance import WebSocketManager
 
 ws_thread = None
 ws_manager = None

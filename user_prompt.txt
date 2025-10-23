@@ -1,4 +1,4 @@
-Analyze the provided 5-minute K-line data to identify Smart Money Concepts (SMC) and common chart patterns.
+Analyze the provided K-line data on different timeframes to identify Smart Money Concepts (SMC) and common chart patterns.
 1. Market Structure: Determine the current higher timeframe (H1) structural bias (Bullish/Bearish) and confirm the latest 15-minute & 1h-hour Market Structure Shift (MSS) or Change of Character (CHOCH).
 2. Liquidity & Order Blocks & Fair Value Gaps:
     - Identify the most recent swing high/low that serves as a liquidity target (Liquidity Sweep potential).
@@ -12,4 +12,4 @@ Analyze the provided 5-minute K-line data to identify Smart Money Concepts (SMC)
    - Risk Note: Highlight the price level where the structural bias is definitively invalidated.
    - Suggest different trading setups with a confidence ranking or score.
 
-Dislaimer: The data is in UTC timezone. Please output the data as Europe/Berlin time.
+Return ONLY valid JSON with no additional text or formatting.

@@ -1,11 +1,10 @@
 import pandas as pd
-import asyncio
-import threading
+import asyncio, threading
 
 from lightweight_charts import Chart
 
-from crypto_reatime_data import WebSocketManager
-from crypto_history_data import get_data
+from reatime_data import WebSocketManager
+from history_data import get_data
 
 
 ws_thread = None
@@ -95,7 +94,7 @@ async def main():
     chart.legend(True)
     chart.events.search += on_search
 
-    chart.topbar.textbox('Coin', 'BTC', func=on_search)
+    chart.topbar.textbox('Coin', 'SOL', func=on_search)
     chart.topbar.switcher('Timeframe', ('1m', '5m', '1h', '4h', '1d'), default='5m',
         func=on_timeframe_selection
     )

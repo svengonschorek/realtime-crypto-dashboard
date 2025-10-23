@@ -1,7 +1,7 @@
 import markdown, webbrowser, tempfile
 import os
 
-from binance.crypto_history_data_binance import get_data
+from history_data import get_data
 from anthropic import Anthropic
 
 klines_5m = get_data("SOL", "USDT", "5m")

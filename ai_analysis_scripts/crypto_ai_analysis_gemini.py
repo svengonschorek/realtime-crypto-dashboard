@@ -1,9 +1,9 @@
 import markdown, webbrowser, tempfile
 
 from google import genai
-from binance.crypto_history_data_binance import get_data
+from history_data import get_data
 
-klines_5m = get_data("SOL", "USDT", "5m")
+klines_5m = get_data("SOL", "USDT", "5")
 
 with open("prompt.txt", "r") as file:
     prompt = file.read()

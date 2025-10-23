@@ -4,7 +4,7 @@ from pybit.unified_trading import HTTP
 
 session = HTTP(testnet=False)
 
-def get_data(coin, base_coin, timeframe):
+def get_data(coin, base_coin, timeframe, limit=2000):
 
     symbol = coin + base_coin
 
@@ -12,7 +12,7 @@ def get_data(coin, base_coin, timeframe):
         category="linear",
         symbol=symbol,
         interval=timeframe,
-        limit=200
+        limit=limit
     )
 
     data = []
