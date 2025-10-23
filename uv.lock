@@ -1189,6 +1189,9 @@ dependencies = [
     { name = "pybit" },
     { name = "requests" },
     { name = "streamlit" },
+    { name = "streamlit-browser-session-storage" },
+    { name = "streamlit-local-storage" },
+    { name = "streamlit-screen-stats" },
     { name = "websocket-client" },
 ]
 
@@ -1201,6 +1204,9 @@ requires-dist = [
     { name = "pybit", specifier = ">=5.12.0" },
     { name = "requests", specifier = ">=2.32.5" },
     { name = "streamlit", specifier = ">=1.50.0" },
+    { name = "streamlit-browser-session-storage", specifier = ">=0.0.12" },
+    { name = "streamlit-local-storage", specifier = ">=0.0.25" },
+    { name = "streamlit-screen-stats", specifier = ">=0.0.82" },
     { name = "websocket-client", specifier = ">=1.8.0" },
 ]
 
@@ -1407,6 +1413,42 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/d6/f6/f7d3a0146577c1918439d3163707040f7111a7d2e7e2c73fa7adeb169c06/streamlit-1.50.0.tar.gz", hash = "sha256:87221d568aac585274a05ef18a378b03df332b93e08103fffcf3cd84d852af46", size = 9664808, upload-time = "2025-09-23T19:24:00.31Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/2a/38/991bbf9fa3ed3d9c8e69265fc449bdaade8131c7f0f750dbd388c3c477dc/streamlit-1.50.0-py3-none-any.whl", hash = "sha256:9403b8f94c0a89f80cf679c2fcc803d9a6951e0fba542e7611995de3f67b4bb3", size = 10068477, upload-time = "2025-09-23T19:23:57.245Z" },
+]
+
+[[package]]
+name = "streamlit-browser-session-storage"
+version = "0.0.12"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "streamlit" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/d5/32/c2198eb437154469366ffbe908810558ea91be96c2653d29ae6a8ea3dfd9/streamlit_browser_session_storage-0.0.12.tar.gz", hash = "sha256:20a2cd38698fa1900eb4d7086576319a8dda6b577f199142d954cdb56e2331fc", size = 536633, upload-time = "2024-11-18T16:38:15.801Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/6d/d7/c76a401fb0ffcb9414203e7ead5eff6bf6d7cea1b38a1cb09bb448275e8e/streamlit_browser_session_storage-0.0.12-py3-none-any.whl", hash = "sha256:c0ed256b505592113978e99e53e4ed2d158d9e64013a758f6b36153b7309c358", size = 543423, upload-time = "2024-11-18T16:37:57.927Z" },
+]
+
+[[package]]
+name = "streamlit-local-storage"
+version = "0.0.25"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "streamlit" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/d1/ad/5e92a9355c2f32c162f0e2a2262b90697385edf0fe64bc66a27eb652ac95/streamlit_local_storage-0.0.25.tar.gz", hash = "sha256:9b7c3e8ae7c14a68b47c980b167306181292213736dfa71850c8d3204dc2a9cd", size = 538392, upload-time = "2024-11-18T16:22:09.432Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/7b/a6/502b00b6db10c3d467ec57d822d6647a35f0328ef03668aa5b6dd160f966/streamlit_local_storage-0.0.25-py3-none-any.whl", hash = "sha256:0ef85618ed8c44f347b7acffb2d104da5b6915e6a4e24612f12a4d2cc355b951", size = 543746, upload-time = "2024-11-18T16:22:07.305Z" },
+]
+
+[[package]]
+name = "streamlit-screen-stats"
+version = "0.0.82"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "streamlit" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/a9/34/9ade81306ed555c7acc84335604b60e12580a747f185012b565813d8568f/streamlit_screen_stats-0.0.82.tar.gz", hash = "sha256:4afffabab17f6e10f91c944ab4edbc8c53b3d6319f13b77c19b8210b76b963d7", size = 1063977, upload-time = "2025-01-03T02:19:25.897Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/66/53/42d8fbeec8f170fbcf6c8d355ca4f607beb211e07c0632d03111d4dc4eca/streamlit_screen_stats-0.0.82-py3-none-any.whl", hash = "sha256:040262a635bd6c4d342618c5110b7c93f186be61bc90717501282fe95cdc0075", size = 1076533, upload-time = "2025-01-03T02:19:22.126Z" },
 ]
 
 [[package]]
