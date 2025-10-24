@@ -1,8 +1,13 @@
 import anthropic
 import pandas as pd
-import os, json
+import os, json, sys
 
-from history_data import get_data
+# Add the project root to the Python path
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.join(script_dir, "..", "..", "..")
+sys.path.append(os.path.abspath(project_root))
+
+from src.api.bybit.history_data import get_data
 
 def format_klines_compact(klines):
     """
@@ -25,10 +30,13 @@ def create_trading_message_with_cache(klines_5m, klines_15m, klines_1h):
     kline_data_15m = format_klines_compact(klines_15m)
     kline_data_1h = format_klines_compact(klines_1h)
 
-    with open("system_prompt.txt", "r") as file:
+    # Navigate to prompts directory
+    prompts_dir = os.path.join(script_dir, "..", "prompts")
+    
+    with open(os.path.join(prompts_dir, "system_prompt.txt"), "r") as file:
         system_prompt = file.read()
     
-    with open("user_prompt.txt", "r") as file:
+    with open(os.path.join(prompts_dir, "user_prompt.txt"), "r") as file:
         user_prompt = file.read()
     
     response = client.messages.create(
@@ -77,7 +85,10 @@ print(response.content[0].text)
 
 # Save response to JSON file
 now = pd.Timestamp.now().strftime("%Y%m%d_%H%M%S")
-file_name = f"analysis/analysis_SOL_USDT_{now}.json"
+# Save to project root data directory
+project_root = os.path.join(script_dir, "..", "..", "..")
+data_dir = os.path.join(project_root, "data", "analysis_results")
+file_name = os.path.join(data_dir, f"analysis_SOL_USDT_{now}.json")
 with open(file_name, "w") as file:
     json.dump(response.content[0].text, file)
 

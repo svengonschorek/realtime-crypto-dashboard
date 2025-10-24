@@ -1,12 +1,17 @@
 import pandas as pd
-import asyncio, threading
+import asyncio, threading, sys, os
 
 from lightweight_charts import Chart
 
-from reatime_data import WebSocketManager
-from history_data import get_data
+# Add the project root to the Python path
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.join(script_dir, "..", "..", "..")
+sys.path.append(os.path.abspath(project_root))
 
+from src.api.bybit.reatime_data import WebSocketManager
+from src.api.bybit.history_data import get_data
 
+sma_line = None
 ws_thread = None
 ws_manager = None
 

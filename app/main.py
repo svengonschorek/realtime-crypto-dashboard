@@ -1,10 +1,16 @@
+import os, sys
 import streamlit as st
 import pandas as pd
 
 from lightweight_charts.widgets import StreamlitChart
 from st_screen_stats import ScreenData
 
-from history_data import get_data
+# Add the project root to the Python path
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.join(script_dir, "..")
+sys.path.append(os.path.abspath(project_root))
+
+from src.api.bybit.history_data import get_data
 
 screenD = ScreenData(setTimeout=1000)
 screen_stats = screenD.st_screen_data()
@@ -13,8 +19,8 @@ width = screen_stats['innerWidth'] * 0.88 - screen_stats['innerWidth'] * 0.2
 height = screen_stats['innerHeight'] * 0.8
 
 # Dashboard styling
-with open(".streamlit/styles.css") as f:
-     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+with open("./.streamlit/styles.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 st.set_page_config(layout="wide")
 
