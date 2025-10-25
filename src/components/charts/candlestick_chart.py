@@ -10,6 +10,7 @@ project_root = os.path.join(script_dir, "..", "..", "..")
 sys.path.append(os.path.abspath(project_root))
 
 from src.api.bybit.history_data import get_data
+from src.ai.analysis.parse_analysis import get_liquidity_zones
 
 def candlestick_chart(height, width):
     interval = "5"
@@ -73,6 +74,26 @@ def candlestick_chart(height, width):
 
         chart.layout(background_color="#0a0a0a", text_color="#ffffff")
         chart.grid(vert_enabled=False, horz_enabled=False)
-
         chart.set(data_loader())
+
+        # Add liquidity zones as markers
+        liquidity_zones = get_liquidity_zones()
+        for zone in liquidity_zones["swing_highs"]:
+            chart.marker(
+                time = pd.to_datetime(zone['timestamp']),
+                text = f"{zone['significance']} | {zone['swept']}",
+                color="#e91e1ea6",
+                shape="arrowDown",
+                position="above"
+            )
+
+        for zone in liquidity_zones["swing_lows"]:
+            chart.marker(
+                time = pd.to_datetime(zone['timestamp']),
+                text = f"{zone['significance']} | {zone['swept']}",
+                color="#2195F3B2",
+                shape="arrowUp",
+                position="below"
+            )
+
         chart.load()

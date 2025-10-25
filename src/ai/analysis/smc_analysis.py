@@ -9,6 +9,20 @@ sys.path.append(os.path.abspath(project_root))
 
 from src.api.bybit.history_data import get_data
 
+def extract_json(text):
+    """Extract JSON from markdown code blocks"""
+    text = text.strip()
+    # Remove code block markers
+    if text.startswith('```'):
+        lines = text.split('\n')
+        # Remove first line (```json or ```)
+        lines = lines[1:]
+        # Remove last line if it's ```
+        if lines[-1].strip() == '```':
+            lines = lines[:-1]
+        text = '\n'.join(lines)
+    return text.strip()
+
 def format_klines_compact(klines):
     """
     Convert klines to compact CSV format
@@ -81,8 +95,6 @@ klines_1h = get_data("SOL", "USDT", "1h", 200)
 
 response = create_trading_message_with_cache(klines_5m, klines_15m, klines_1h)
 
-print(response.content[0].text)
-
 # Save response to JSON file
 now = pd.Timestamp.now().strftime("%Y%m%d_%H%M%S")
 # Save to project root data directory
@@ -90,7 +102,7 @@ project_root = os.path.join(script_dir, "..", "..", "..")
 data_dir = os.path.join(project_root, "data", "analysis_results")
 file_name = os.path.join(data_dir, f"analysis_SOL_USDT_{now}.json")
 with open(file_name, "w") as file:
-    json.dump(response.content[0].text, file)
+    json.dump(extract_json(response.content[0].text), file)
 
 # Check cache performance
 print(f"\nCache stats:")

@@ -8,8 +8,8 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.join(script_dir, "..")
 sys.path.append(os.path.abspath(project_root))
 
-from src.api.bybit.history_data import get_data
 from src.components.charts.candlestick_chart import candlestick_chart
+from src.ai.analysis.parse_analysis import get_analysis_metadata, get_market_structure, get_chart_patterns, get_summary
 
 screenD = ScreenData(setTimeout=1000)
 screen_stats = screenD.st_screen_data()
@@ -30,3 +30,20 @@ candlestick_chart(
     height=screen_stats['innerHeight'] * 0.65,
     width=screen_stats['innerWidth'] * 0.95
 )
+
+analysis_metadata = get_analysis_metadata()
+market_structure = get_market_structure()
+chart_patterns = get_chart_patterns()
+summary = get_summary()
+
+st.subheader("Analysis Metadata:")
+st.json(analysis_metadata)
+
+st.subheader("Market Structure:")
+st.json(market_structure)
+
+st.subheader("Chart Patterns:")
+st.json(chart_patterns)
+
+st.subheader("Summary:")
+st.json(summary)
